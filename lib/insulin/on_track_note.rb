@@ -1,23 +1,26 @@
 module Insulin
-
-  class OnTrackNote < Hash
+  class OnTrackNote
     @@keys = {
       "F" => "food",
       "B" => "booze",
       "N" => "note"
     }
+
+    attr_reader :type, :content
     def initialize n
       bits = n.split ":"
-      k = bits[0]
-      value = bits[1].strip.downcase
-      if ["F", "B"].include? k
-        a = []
-        value.split(",").each do |v|
-          a << v.strip
+      t = bits[0]
+      if @@keys.keys.include? t
+        @content = bits[1].strip.downcase
+        if ["F", "B"].include? t
+          a = []
+          @content.split(",").each do |v|
+            a << v.strip
+          end
+          @content = a
         end
-        value = a
+        @type = @@keys[t]
       end
-      self[@@keys[k]] = value
     end
   end
 end
