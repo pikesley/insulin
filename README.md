@@ -1,29 +1,6 @@
-# Insulin
+What's this?
+============
 
-TODO: Write a gem description
+Well I was recently diagnosed with Type-1 Diabetes. I've been collecting lots of data related to my condiiton using (OnTrack)[https://play.google.com/store/apps/details?id=com.gexperts.ontrack], and wanted to do more interesting things with it. Hence this.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'insulin'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install insulin
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+At the moment there are just a few base classes here, the aim is to have it at the very least able to export custom CSV files for spreadsheet/graphing purposes.
