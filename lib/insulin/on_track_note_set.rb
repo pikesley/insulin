@@ -1,6 +1,7 @@
 module Insulin
   class OnTrackNoteSet < Hash
-    def initialize l
+    def initialize s
+      l = s.split"\n"
       l.each do |n|
         x = OnTrackNote.new n
         if x.type

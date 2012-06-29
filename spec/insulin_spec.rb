@@ -44,9 +44,7 @@ describe Insulin::OnTrackNote do
 end
 
 describe Insulin::OnTrackNoteSet do
-  simple_note_set = Insulin::OnTrackNoteSet.new [
-    "F: turkey breast, salad"
-  ]
+  simple_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad"
 
   it "get simple note set" do
     simple_note_set.should == {
@@ -57,12 +55,10 @@ describe Insulin::OnTrackNoteSet do
     }
   end
 
-  multiple_note_set = Insulin::OnTrackNoteSet.new [
-    "F: turkey breast, salad",
-    "N:After wine. No overnight hypo.",
-    "N:some other note",
-    "B: glass of wine"
-  ]
+  multiple_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad
+    N:After wine. No overnight hypo.
+    N:some other note
+    B: glass of wine"
 
   it "get multiple note set" do
     multiple_note_set.should == {
@@ -80,9 +76,8 @@ describe Insulin::OnTrackNoteSet do
     }
   end
 
-  failing_note_set = Insulin::OnTrackNoteSet.new [
-    "F: turkey breast, salad", "X:This should fail"
-  ]
+  failing_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad
+X:This should fail"
 
   it "get failing note set" do
     failing_note_set.should == {
