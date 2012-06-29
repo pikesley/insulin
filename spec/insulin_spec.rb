@@ -16,7 +16,17 @@ describe Insulin::OnTrackDate do
   end
 
   it "get day" do
-    otd["day"].should == "Friday"
+    otd["day"].should == "friday"
+  end
+
+  otd_gmt = Insulin::OnTrackDate.new "Jan 22 2012 9:00:12 PM"
+
+  it "get timestamp" do
+    otd_gmt["timestamp"].to_s.should == "2012-01-22 21:00:12 +0000"
+  end
+
+  it "get time" do
+    otd_gmt["time"].should == "21:00:12 GMT"
   end
 end
 
@@ -122,5 +132,35 @@ describe Insulin::OnTrackCsvLine do
 
   it "get notes" do
     csv["notes"].should == nil
+  end
+
+  csv_with_note = Insulin::OnTrackCsvLine.new %q{266,"Jun 28, 2012 10:21:05 AM",Medication,Humalog,After Breakfast,4.0,"F:2 bacon, 2 toast
+N:test note
+X:fail note
+N:other note"}
+
+  it "get subtype" do
+    csv_with_note["subtype"].should == "humalog"
+  end
+
+  it "get day" do
+    csv_with_note["day"].should == "thursday"
+  end
+
+  it "get unixtime" do
+    csv_with_note["unixtime"].should == 1340875265
+  end
+
+  it "get notes" do
+    csv_with_note["notes"].should == {
+      "food" => [
+        "2 bacon",
+        "2 toast"
+      ],
+      "note" => [
+        "test note",
+        "other note"
+      ]
+    }
   end
 end

@@ -10,7 +10,7 @@ module Insulin
       self["tzoffset"] = t.strftime "%z"
       self["timezone"] = t.zone
       self["unixtime"] = t.to_i
-      self["day"] = t.strftime "%A"
+      self["day"] = t.strftime("%A").downcase
       self["date"] = t.strftime "%F"
       self["time"] = t.strftime "%T #{self['timezone']}" 
     end

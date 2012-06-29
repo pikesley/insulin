@@ -11,6 +11,11 @@ module Insulin
       self["subtype"] = bits[4].downcase if not bits[4] == ""
       self["tag"] = bits[5].downcase
       self["value"] = bits[6].to_f
+
+      notes = bits[7..-1]
+      notes = notes.join ","
+      notes = notes[1..-2]
+      self["notes"] = OnTrackNoteSet.new notes if not notes == ""
     end
   end
 end
