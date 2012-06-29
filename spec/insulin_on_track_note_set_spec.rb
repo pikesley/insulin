@@ -3,7 +3,7 @@ require 'insulin'
 describe Insulin::OnTrackNoteSet do
   simple_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad"
 
-  it "get simple note set" do
+  it "should have the correct notes" do
     simple_note_set.should == {
       "food" => [
         "turkey breast",
@@ -17,7 +17,7 @@ describe Insulin::OnTrackNoteSet do
     N:some other note
     B: glass of wine"
 
-  it "get multiple note set" do
+  it "should have the correct notes" do
     multiple_note_set.should == {
       "food" => [
         "turkey breast",
@@ -36,7 +36,7 @@ describe Insulin::OnTrackNoteSet do
   failing_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad
 X:This should fail"
 
-  it "get failing note set" do
+  it "should have the correct notes" do
     failing_note_set.should == {
       "food" => [
         "turkey breast",

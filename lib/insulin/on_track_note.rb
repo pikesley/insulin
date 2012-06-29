@@ -1,10 +1,7 @@
 module Insulin
   class OnTrackNote
-    @@keys = {
-      "F" => "food",
-      "B" => "booze",
-      "N" => "note"
-    }
+    config = Insulin::Config.new
+    @@keys = config.get_section "note_keys"
 
     attr_reader :type, :content
     def initialize n

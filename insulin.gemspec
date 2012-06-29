@@ -15,5 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Insulin::VERSION
 
+  gem.add_dependency "mongo"
+  gem.add_dependency "bson_ext"
+
   gem.add_development_dependency "rspec", "~> 2.6"
 end
