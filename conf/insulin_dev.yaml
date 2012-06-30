@@ -1,0 +1,8 @@
+mongo:
+  host:      localhost
+  database:  insulin_dev
+
+note_keys:
+  F:         food
+  B:         booze
+  N:         note

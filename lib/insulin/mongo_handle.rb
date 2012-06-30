@@ -1,7 +1,7 @@
 require 'mongo'
 
 module Insulin
-  class MongoConnection
+  class MongoHandle
     attr_reader :db, :connection
 
     def initialize conf = nil
