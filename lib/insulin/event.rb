@@ -4,7 +4,7 @@ module Insulin
       self.update h
     end
 
-    def save mongo_connection
+    def save mongo_handle
       clxns = [
         "events",
         self["type"],
@@ -13,15 +13,17 @@ module Insulin
       ]
 
       clxns.each do |c|
-        mongo_connection.db.collection(c).update(
-          {
-            "serial" => self["serial"]
-          },
-          self,
-          {
-            :upsert => true
-          }
-        )
+        if c
+          mongo_handle.db.collection(c).update(
+            {
+              "serial" => self["serial"]
+            },
+            self,
+            {
+              :upsert => true
+            }
+          )
+        end
       end
     end
   end
