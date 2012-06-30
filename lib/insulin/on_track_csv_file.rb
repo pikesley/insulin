@@ -31,5 +31,11 @@ module Insulin
         @events << e
       end
     end
+
+    def save_events mongo
+      @events.each do |e|
+        e.save mongo
+      end
+    end
   end
 end
