@@ -10,7 +10,37 @@ N:other note"}
     event["type"].should == "medication"
   end
 
-  it "should save to mongo" do
-    event.save
+  mongo = Insulin::MongoHandle.new 'conf/insulin_dev.yaml'
+
+  event.save mongo
+  clxns = [
+    "events",
+    event["type"],
+    event["subtype"],
+    event["date"]
+  ]
+
+  clxns.each do |c|
+    item = mongo.db.collection(c).find_one(
+      {"serial" => 266}
+    )
+
+    it "should save to the '%s' collection" % c do
+      item.should_not == nil
+    end
+
+    it "saved event should have correct type" do
+      item["type"].should == "medication"
+    end
+
+    it "saved event should have correct tag" do
+      item["tag"].should == "after breakfast"
+    end
+
+    it "saved event should have correct value" do
+      item["value"].should == 4.0
+    end
   end
+
+  mongo.drop_db
 end
