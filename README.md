@@ -23,7 +23,7 @@ This will take that file, turn it onto some nice JSON, and push into a number of
     MongoDB shell version: 2.0.6
     connecting to: insulin
     > db.events.find({serial : 266})
-    { "_id" : ObjectId("4ff07b371508cc259c8a8f0c"), "serial" : 266, "timestamp" : ISODate("2012-06-28T09:21:05Z"), "tzoffset" : "+0100", "timezone" : "BST", "unixtime" : 1340875265, "day" : "thursday", "date" : "2012-06-28", "time" : "10:21:05 BST", "type" : "medication", "subtype" : "humalog", "tag" : "after breakfast", "value" : 4, "notes" : { "food" : [ "2 bacon", "2 toast" ], "note" : [ "test note" ] } }
+    { "_id" : ObjectId("4ff07b371508cc259c8a8f0c"), "serial" : 266, "timestamp" : ISODate("2012-06-28T09:21:05Z"), "tzoffset" : "+0100", "timezone" : "BST", "unixtime" : 1340875265, "day" : "thursday", "date" : "2012-06-28", "time" : "10:21:05 BST", "type" : "medication", "subtype" : "humalog", "tag" : "breakfast", "value" : 4, "notes" : { "food" : [ "2 bacon", "2 toast" ], "note" : [ "test note" ] } }
     > 
 
 Next steps
