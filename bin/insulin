@@ -4,16 +4,16 @@ require 'insulin'
 require 'thor'
 
 module Insulin
-  class Insulin < Thor
+  class I < Thor
     map "-i" => :ingest
 
     desc "ingest", "ingest OnTrack CSV export FILE"
     def ingest file
       csv = Insulin::OnTrackCsvFile.new file
-      mongo = Insulin::MongoHandle.new
+      mongo = Insulin::MongoHandle.new ({"database" => "insulin"})
       csv.save_events mongo
     end
   end
 end
 
-Insulin::Insulin.start
+Insulin::I.start
