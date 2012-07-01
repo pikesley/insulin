@@ -7,7 +7,7 @@ require "insulin/version"
  
 task :build do
   system "gem build insulin.gemspec"
-  system "mv insulin*gem pkg/"
+#  system "mv insulin*gem pkg/"
 end
  
 task :release => :build do
