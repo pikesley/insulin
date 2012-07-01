@@ -47,6 +47,7 @@ PLATFORMS
 
 DEPENDENCIES
   aruba
+  bundler
   cucumber
   insulin!
   rspec (~> 2.6)
