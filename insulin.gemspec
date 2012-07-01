@@ -15,6 +15,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Insulin::VERSION
 
+  gem.executables << 'insulin'
+
+  gem.add_dependency "thor"
   gem.add_dependency "mongo"
   gem.add_dependency "bson_ext"
 
