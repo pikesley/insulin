@@ -43,12 +43,16 @@ describe Insulin::OnTrackCsvFile do
     csv_file.events[0].class.name.should == "Insulin::Event"
   end
 
-  mongo = Insulin::MongoHandle.new 'conf/insulin_dev.yaml'
-
-  it "should save events" do
-    csv_file.save_events mongo
-    mongo.db.collection("events").count.should > 200
+  before :all do
+    @mongo = Insulin::MongoHandle.new 'conf/insulin_dev.yaml'
   end
 
-  mongo.drop_db
+  it "should save events" do
+    csv_file.save_events @mongo
+    @mongo.db.collection("events").count.should > 200
+  end
+
+  after :all do
+    @mongo.drop_db
+  end
 end
