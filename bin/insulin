@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+# needs to handle passing config. ~/.insulin or somrthing
 require 'insulin'
 require 'thor'
 
