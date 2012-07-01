@@ -17,7 +17,7 @@ Next steps
 
 * Get it generating custom CSVs for Spreadsheeting
 * Get it doing some analysis
-* Give it a [meteor](http://meteor.com/) front-end (might require some help from [Chris](https://github.com/mrchrisadams). Graphs, yo
+* Give it a [meteor](http://meteor.com/) front-end (might require some help from [Chris](https://github.com/mrchrisadams)). Graphs, yo
 * Possibly connect to [this API](http://platform.fatsecret.com/api/) to extract carb values from plain-text food descriptions (this may be a little ambitious, we'll see)
 
 
