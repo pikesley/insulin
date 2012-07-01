@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    insulin (0.0.7)
+    insulin (0.0.9)
       bson_ext
       mongo
       thor
