@@ -10,7 +10,9 @@ N:other note"}
     event["type"].should == "medication"
   end
 
-  mongo = Insulin::MongoHandle.new 'conf/insulin_dev.yaml'
+  conf = Insulin::Config.new 'conf/insulin_dev.yaml'
+  mconf = conf.get_section "mongo"
+  mongo = Insulin::MongoHandle.new mconf
 
   event.save mongo
   clxns = [
