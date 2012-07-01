@@ -51,7 +51,7 @@ describe Insulin::OnTrackCsvFile do
 
   it "should save events" do
     csv_file.save_events @mongo
-    @mongo.db.collection("events").count.should > 200
+    @mongo.db.collection("events").count.should >= 17
   end
 
   after :all do
