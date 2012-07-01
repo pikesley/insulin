@@ -9,13 +9,9 @@ module Insulin
     attr_reader :db, :connection
 
     # Set up the connection as described by 'conf'
-    def initialize conf = nil
-
-      # Config has a sensible default file
-      c = Insulin::Config.new conf
-      @conf = c.get_section "mongo"
-
-      @connection = Mongo::Connection.new
+    def initialize conf
+      @conf = conf
+      @connection = Mongo::Connection.new 
       @db = @connection.db @conf["database"]
     end
 

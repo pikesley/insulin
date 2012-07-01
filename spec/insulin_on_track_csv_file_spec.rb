@@ -44,7 +44,9 @@ describe Insulin::OnTrackCsvFile do
   end
 
   before :all do
-    @mongo = Insulin::MongoHandle.new 'conf/insulin_dev.yaml'
+    config = Insulin::Config.new 'conf/insulin_dev.yaml'
+    mconf = config.get_section "mongo"
+    @mongo = Insulin::MongoHandle.new mconf
   end
 
   it "should save events" do
