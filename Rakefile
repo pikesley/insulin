@@ -11,7 +11,7 @@ task :build do
 end
  
 task :release => :build do
-  system "gem push pkg/insulin-#{Insulin::VERSION}"
+  system "gem push pkg/insulin-#{Insulin::VERSION}.gem"
 end
 
 task :rspec do
