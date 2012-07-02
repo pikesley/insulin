@@ -20,7 +20,6 @@ describe Insulin::MongoHandle do
       true
   end
 
-
   it "should respond correctly to being passed a hash" do
     prod_handle = Insulin::MongoHandle.new(
       {
