@@ -10,6 +10,10 @@ N:other note"}
     event["type"].should == "medication"
   end
 
+  it "should have the correct units" do
+    event["units"].should == "x10^-5 L"
+  end
+
   conf = Insulin::Config.new 'conf/insulin_dev.yaml'
   mconf = conf.get_section "mongo"
   mongo = Insulin::MongoHandle.new mconf
@@ -41,6 +45,10 @@ N:other note"}
 
     it "saved event should have correct value" do
       item["value"].should == 4.0
+    end
+
+    it "saved event should have correct units" do
+      item["units"].should == "x10^-5 L"
     end
   end
 

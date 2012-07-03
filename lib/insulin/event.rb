@@ -5,9 +5,18 @@ module Insulin
   # This class represents a single OnTrack event (BG, meds, etc)
   class Event < Hash
 
+    @@units = {
+      "glucose" => "mmol/L",
+      "medication" => "x10^-5 L",
+      "weight" => "kg",
+      "exercise" => "minutes"
+    }
+
     # We expect to be passed a hash
     def initialize h
       self.update h
+
+      self["units"] = @@units[self["type"]]
     end
 
     # Save the event to Mongo via mongo_handle
