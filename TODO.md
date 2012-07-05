@@ -3,3 +3,4 @@
 * Indexes
 * Map/reduce somewhere?
 * Jenkins?
+* Food - combine available carbs data with meds object? or other way around?
