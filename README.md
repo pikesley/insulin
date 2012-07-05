@@ -40,4 +40,6 @@ Next steps
 * Give it a [meteor](http://meteor.com/) front-end (might require some help from [Chris](https://github.com/mrchrisadams)). Graphs, yo
 * Possibly connect to [this API](http://platform.fatsecret.com/api/) to extract carb values from plain-text food descriptions (this may be a little ambitious, we'll see)
 
+---
+
 Project built using DDD (Diabetes-Driven Development)
