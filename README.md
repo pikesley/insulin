@@ -26,6 +26,10 @@ This will take that file, parse it, and push the JSON into a number of collectio
     { "_id" : ObjectId("4ff07b371508cc259c8a8f0c"), "serial" : 266, "timestamp" : ISODate("2012-06-28T09:21:05Z"), "tzoffset" : "+0100", "timezone" : "BST", "unixtime" : 1340875265, "day" : "thursday", "date" : "2012-06-28", "time" : "10:21:05 BST", "type" : "medication", "subtype" : "humalog", "tag" : "breakfast", "value" : 4, "notes" : { "food" : [ "2 bacon", "2 toast" ], "note" : [ "test note" ] } }
     > 
 
+You can also run the tests, if you're into that sort of thing:
+
+    bundle exec rspec
+
 There's also some Postfix voodoo I've been using to extract the CSVs from incoming mail, which I'll document here soon.
 
 Next steps
@@ -36,4 +40,4 @@ Next steps
 * Give it a [meteor](http://meteor.com/) front-end (might require some help from [Chris](https://github.com/mrchrisadams)). Graphs, yo
 * Possibly connect to [this API](http://platform.fatsecret.com/api/) to extract carb values from plain-text food descriptions (this may be a little ambitious, we'll see)
 
-
+This project built using the DDD (Diabetes-Driven Development) methodology
