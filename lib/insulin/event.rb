@@ -1,3 +1,5 @@
+require 'time'
+
 module Insulin
 # Author::  Sam (mailto:sam@cruft.co)
 # License:: MIT
@@ -12,6 +14,10 @@ module Insulin
       "exercise" => "minutes"
     }
 
+# An event before this time is considered part of the previous day. Because
+# sometimes, we stay up late
+    @@cut_off_time = "04:00"
+
     # We expect to be passed a hash
     def initialize h
       self.update h
@@ -22,12 +28,18 @@ module Insulin
     # Save the event to Mongo via mongo_handle
     def save mongo_handle
 
+# See above
+      date_collection = self["date"]
+      if self["time"] < @@cut_off_time
+        date_collection = (Time.parse(self["date"]) - 86400).strftime "%F"
+      end
+
       # Save to each of these collections
       clxns = [
         "events",
         self["type"],
         self["subtype"],
-        self["date"]
+        date_collection
       ]
 
       clxns.each do |c|

@@ -52,5 +52,17 @@ N:other note"}
     end
   end
 
+  mongo_event = Insulin::Event.new mongo.db.collection("events").find_one(
+    {"serial" => 266}
+  )
+
+  it "loaded event should have correct date" do
+    mongo_event["date"].should == "2012-06-28"
+  end
+
+  it "loaded event should have correct time" do
+    mongo_event["time"].should == "10:21:05 BST"
+  end
+
   mongo.drop_db
 end

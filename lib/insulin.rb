@@ -7,6 +7,8 @@ require "insulin/on_track_note_set"
 require "insulin/on_track_csv_line"
 require "insulin/on_track_csv_file"
 require "insulin/event"
+require "insulin/day"
+
 # Author::  Sam (mailto:sam@cruft.co)
 # License:: MIT
 

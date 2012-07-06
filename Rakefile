@@ -2,8 +2,6 @@
 
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
 
-system "bundle install"
-
 require "bundler/gem_tasks"
 require "insulin/version"
  

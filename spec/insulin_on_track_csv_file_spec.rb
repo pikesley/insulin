@@ -11,16 +11,15 @@ describe Insulin::OnTrackCsvFile do
     csv_file.lines[0].class.name.should == "Insulin::OnTrackCsvLine"
   end
 
-  it "line with serial 266 should have proper noteset" do
+  it "line with serial 342 should have proper noteset" do
     csv_file.lines.each do |c|
-      if c["serial"] == 266
+      if c["serial"] == 342
         c["notes"].should == {
-          "food"=>[
-            "2 bacon",
-            "2 toast"
+          "booze"=>[
+            "4 pints"
           ],
           "note"=>[
-            "test note"
+            "new pot of strips"
           ]
         }
       end
@@ -51,7 +50,18 @@ describe Insulin::OnTrackCsvFile do
 
   it "should save events" do
     csv_file.save_events @mongo
-    @mongo.db.collection("events").count.should >= 17
+    @mongo.db.collection("events").count.should >= 40
+  end
+
+  it "small-hours event should be assigned to previous-date collection" do
+    l = @mongo.db.collection("2012-06-30").find_one( { "serial" => 292 } )
+    l.should_not == nil
+    l["date"].should == "2012-07-01"
+  end
+
+  it "small-hours event should not appear in actual-date collection" do
+    l = @mongo.db.collection("2012-06-01").find_one( { "serial" => 292 } )
+    l.should == nil
   end
 
   after :all do

@@ -3,6 +3,7 @@ PATH
   specs:
     insulin (0.0.9)
       bson_ext
+      ffi
       mongo
       thor
 
