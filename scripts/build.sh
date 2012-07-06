@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$HOME/.rvm/scripts/rvm"
+. "/usr/share/jetty/.rvm/scripts/rvm"
 
 bundle install
 bundle exec rspec
