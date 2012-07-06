@@ -51,11 +51,11 @@ module Insulin
 
     # Save the events to Mongo
     def save_events mongo
-      print "saving %d events to mongo... " % @events.count
+#      print "saving %d events to mongo... " % @events.count
       @events.each do |e|
         e.save mongo
       end
-      puts "done"
+#      puts "done"
     end
   end
 end
