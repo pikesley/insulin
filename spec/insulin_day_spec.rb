@@ -29,7 +29,7 @@ describe Insulin::Day do
   end
 
   it "should display correctly" do
-    d.to_s.should include "19:07:42 BST medication humalog  6.0 x10^-5 L"
+    d.to_s.should include "19:07:42 BST medication humalog     6.0 x10^-5 L"
   end
 
   drop_test_db

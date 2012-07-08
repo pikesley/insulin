@@ -44,32 +44,9 @@ module Insulin
       s << "\n"
       s << "\n"
 
-      @widths = {}
       self["all"].each do |e|
-        e.keys.each do |k|
-          if not @widths[k]
-            @widths[k] = e[k].to_s.size
-          else
-            if e[k].to_s.size > @widths[k]
-              @widths[k] = e[k].to_s.size
-            end
-          end
-        end
+        s << e.simple
       end
-
-      self["all"].each do |e|
-        t = "%-#{@widths['time']}s %-#{@widths['type']}s %-#{@widths['subtype']}s %4.1f %-#{@widths["units"]}s" % [
-          e["time"],
-          e["type"],
-          e["subtype"],
-          e["value"],
-          e["units"]
-        ]
-
-        s << t
-        s << "\n"
-      end
-      s << "\n"
 
       s << "Average glucose: %4.2f" % self.average_glucose
       s

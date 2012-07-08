@@ -57,5 +57,17 @@ module Insulin
         end
       end
     end
+
+    def simple
+      s = "%s %-10s %-10s %4.1f %s" % [
+        self["time"],
+        self["type"],
+        self["subtype"],
+        self["value"],
+        self["units"]
+      ]
+
+      s
+    end
   end
 end
