@@ -26,6 +26,25 @@ This will take that file, parse it, and push the JSON into a number of collectio
     { "_id" : ObjectId("4ff07b371508cc259c8a8f0c"), "serial" : 266, "timestamp" : ISODate("2012-06-28T09:21:05Z"), "tzoffset" : "+0100", "timezone" : "BST", "unixtime" : 1340875265, "day" : "thursday", "date" : "2012-06-28", "time" : "10:21:05 BST", "type" : "medication", "subtype" : "humalog", "tag" : "breakfast", "value" : 4, "notes" : { "food" : [ "2 bacon", "2 toast" ], "note" : [ "test note" ] } }
     > 
 
+    insulin day DATE
+
+Show stats for date DATE (in YYYY-MM-DD format) - defaults to 'today' if no date supplied. Note that insulin considers events that occur up to 04:00 as part of the previous actual day (because sometimes we stay up late, right?). Output will look something like
+
+    2012-07-06
+          06:50:54 BST glucose                6.4 mmol/L
+          07:05:38 BST weight                59.0 kg
+          09:43:33 BST glucose                6.7 mmol/L
+          09:50:23 BST medication humalog     4.0 x10^-5 L
+          13:17:43 BST glucose                4.7 mmol/L
+          13:31:44 BST medication humalog     4.0 x10^-5 L
+          15:57:12 BST glucose                6.2 mmol/L
+          20:01:41 BST glucose                6.2 mmol/L
+          20:05:21 BST medication humalog     6.0 x10^-5 L
+          21:42:38 BST glucose                9.0 mmol/L
+          00:34:22 BST glucose                9.5 mmol/L
+          00:49:27 BST medication lantus     12.0 x10^-5 L
+          Average glucose: 6.96 mmol/L
+
 You can also run the tests, if you're into that sort of thing:
 
     bundle exec rspec
