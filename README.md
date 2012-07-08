@@ -56,7 +56,7 @@ You can also run the tests, if you're into that sort of thing:
 Postfix setup
 =============
 
-OnTrack allows you to mail the exported CSV files to an email address. [This page](http://tech.jeffri.es/2010/09/automatic-ripping-and-saving-email-attachments-with-postfix/) explains how to configure Postfix to extract those files. I now have this set up so that I mail from OnTrack to particular_address@mydomain.com, the CSVs get dropped into a particular directory, and then 'insulin ingest' runs periodically on the newest file in that directory.
+OnTrack allows you to mail the exported CSV files to an email address. [This page](http://tech.jeffri.es/2010/09/automatic-ripping-and-saving-email-attachments-with-postfix/) explains how to configure Postfix to extract those files. I now have this set up so that I mail from OnTrack to particular_address@mydomain.com, the CSVs get dropped into a directory, and then 'insulin ingest' runs periodically on the newest file in that directory.
 
 Next steps
 ==========
