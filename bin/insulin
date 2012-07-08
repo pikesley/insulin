@@ -5,13 +5,24 @@ require 'thor'
 
 module Insulin
   class I < Thor
-    map "-i" => :ingest
+    @@mongo = Insulin::MongoHandle.new ({"database" => "insulin"})
 
-    desc "ingest", "ingest OnTrack CSV export FILE"
+#    map "-i" => :ingest
+
+    desc "ingest FILE", "ingest OnTrack CSV export FILE"
     def ingest file
       csv = Insulin::OnTrackCsvFile.new file
-      mongo = Insulin::MongoHandle.new ({"database" => "insulin"})
-      csv.save_events mongo
+      csv.save_events @@mongo
+    end
+
+    desc "day DATE", "show stats for day DATE (default is today)"
+    def day date = nil
+      if not date
+        require 'time'
+        date = Time.new.strftime "%F"
+      end
+      d = Insulin::Day.new date, @@mongo
+      puts d
     end
   end
 end

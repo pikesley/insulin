@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    insulin (0.0.9)
+    insulin (0.0.10)
       bson_ext
       ffi
       mongo

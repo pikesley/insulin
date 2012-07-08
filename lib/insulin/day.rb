@@ -41,7 +41,8 @@ module Insulin
     end
 
     def to_s
-      s = @date
+      s = ""
+      s << @date
       s << "\n"
 
       self["all"].each do |e|
