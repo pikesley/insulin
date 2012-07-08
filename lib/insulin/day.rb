@@ -32,6 +32,7 @@ module Insulin
       t = 0
       c = 0
       self["glucose"].each do |g|
+        @glucose_units = g["units"]
         t += g["value"]
         c += 1
       end
@@ -42,13 +43,16 @@ module Insulin
     def to_s
       s = @date
       s << "\n"
-      s << "\n"
 
       self["all"].each do |e|
         s << e.simple
+        s << "\n"
       end
 
-      s << "Average glucose: %4.2f" % self.average_glucose
+      s << "          Average glucose: %4.2f %s" % [
+        self.average_glucose,
+        @glucose_units
+      ]
       s
     end
   end

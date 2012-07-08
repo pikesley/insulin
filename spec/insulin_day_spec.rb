@@ -32,5 +32,7 @@ describe Insulin::Day do
     d.to_s.should include "19:07:42 BST medication humalog     6.0 x10^-5 L"
   end
 
+  puts d
+
   drop_test_db
 end
