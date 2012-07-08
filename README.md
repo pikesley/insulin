@@ -32,7 +32,7 @@ Currently the only supported output operation is
 
     insulin day DATE
 
-Show stats for date DATE (in YYYY-MM-DD format) - defaults to 'today' if no date supplied. Note that insulin considers events that occur up to 04:00 as part of the previous actual day (because sometimes we stay up late, right?). Output will look something like
+to show stats for date DATE (in YYYY-MM-DD format) - defaults to 'today' if no date supplied. Note that insulin considers events that occur up to 04:00 as part of the previous actual day (because sometimes we stay up late, right?). Output will look something like
 
     2012-07-06
               06:50:54 BST glucose                6.4 mmol/L
