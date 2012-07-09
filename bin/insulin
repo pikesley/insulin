@@ -28,6 +28,8 @@ module Insulin
         puts "No data for %s" % date
       end
     end
+
+    default_task :day
   end
 end
 

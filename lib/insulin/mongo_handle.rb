@@ -11,8 +11,13 @@ module Insulin
     # Set up the connection as described by 'conf'
     def initialize conf
       @conf = conf
-      @connection = Mongo::Connection.new 
-      @db = @connection.db @conf["database"]
+      begin
+        @connection = Mongo::Connection.new 
+        @db = @connection.db @conf["database"]
+      rescue Mongo::ConnectionFailure
+        puts "MongoDB doesn't appear to be running. We can't go on without this"
+        exit 1
+      end
     end
 
     # Drop this database
