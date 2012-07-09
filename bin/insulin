@@ -21,8 +21,12 @@ module Insulin
         require 'time'
         date = Time.new.strftime "%F"
       end
-      d = Insulin::Day.new date, @@mongo
-      puts d
+      begin
+        d = Insulin::Day.new date, @@mongo
+        puts d
+      rescue NoMethodError
+        puts "No data for %s" % date
+      end
     end
   end
 end
