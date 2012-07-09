@@ -4,7 +4,7 @@ require File.expand_path('../lib/insulin/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Sam"]
   gem.email         = ["sam@cruft.co"]
-  gem.description   = %q{Doing stuff with my diabetes data}
+  gem.description   = %q{Take exported CSV from the OnTrack diabetes app, put it into MongoDB, and do interesting stuff with it}
   gem.summary       = %q{Doing stuff with my diabetes data}
   gem.homepage      = "http://pikesley.github.com/insulin/"
 
