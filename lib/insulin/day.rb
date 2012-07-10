@@ -56,5 +56,20 @@ module Insulin
       ]
       s
     end
+
+    def minimal
+      s = ""
+      s << @date
+      s << "\n"
+
+      self["all"].each do |e|
+        if ["breakfast", "lunch", "dinner", "bedtime"].include? e["tag"]
+          s << e.simple
+          s << "\n"
+        end
+      end
+
+      s
+    end
   end
 end
