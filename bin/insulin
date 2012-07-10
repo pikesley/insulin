@@ -11,7 +11,7 @@ module Insulin
 
     desc "ingest FILE", "ingest OnTrack CSV export FILE"
     def ingest file
-      csv = Insulin::OnTrackCsvFile.new file
+      csv = Insulin::OnTrack::CsvFile.new file
       csv.save_events @@mongo
     end
 
