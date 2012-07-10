@@ -1,3 +1,4 @@
+* Default 'day' for executable doesn't make much sense
 * Indexes
 * Map/reduce somewhere?
 * Jenkins?
