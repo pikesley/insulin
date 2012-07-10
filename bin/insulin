@@ -29,6 +29,16 @@ module Insulin
       end
     end
 
+    desc "week DATE", "show stats for week commencing DATE (defaults to previous 7 days)"
+    def week date = nil
+      if not date
+        require 'time'
+        date = (Time.new - (6 * 86400)).strftime "%F"
+      end
+      w = Insulin::Week.new date, @@mongo
+      puts w.to_s
+    end
+
     default_task :day
   end
 end

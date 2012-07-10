@@ -31,10 +31,14 @@ module Insulin
     def average_glucose
       t = 0
       c = 0
-      self["glucose"].each do |g|
-        @glucose_units = g["units"]
-        t += g["value"]
-        c += 1
+      begin
+        self["glucose"].each do |g|
+          @glucose_units = g["units"]
+          t += g["value"]
+          c += 1
+        end
+      rescue NoMethodError
+        return 0
       end
 
       return t / c
@@ -46,12 +50,13 @@ module Insulin
       s << "\n"
 
       self["all"].each do |e|
-        s << "          "
+        s << "    "
         s << e.simple
         s << "\n"
       end
 
-      s << "          Average glucose: %4.2f %s" % [
+      s << "    "
+      s << "Average glucose: %4.2f %s" % [
         self.average_glucose,
         @glucose_units
       ]
@@ -65,7 +70,7 @@ module Insulin
 
       self["all"].each do |e|
         if ["breakfast", "lunch", "dinner", "bedtime"].include? e["tag"]
-          s << "          "
+          s << "    "
           s << e.simple
           s << "\n"
         end
