@@ -1,13 +1,13 @@
 require "insulin/version"
 require "insulin/config"
 require "insulin/mongo_handle"
-require "insulin/on_track_date"
-require "insulin/on_track_note"
-require "insulin/on_track_note_set"
-require "insulin/on_track_csv_line"
-require "insulin/on_track_csv_file"
 require "insulin/event"
 require "insulin/day"
+require "insulin/on_track/date"
+require "insulin/on_track/note"
+require "insulin/on_track/note_set"
+require "insulin/on_track/csv_line"
+require "insulin/on_track/csv_file"
 
 # Author::  Sam (mailto:sam@cruft.co)
 # License:: MIT
