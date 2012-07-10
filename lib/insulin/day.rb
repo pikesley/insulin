@@ -46,6 +46,7 @@ module Insulin
       s << "\n"
 
       self["all"].each do |e|
+        s << "          "
         s << e.simple
         s << "\n"
       end
@@ -64,6 +65,7 @@ module Insulin
 
       self["all"].each do |e|
         if ["breakfast", "lunch", "dinner", "bedtime"].include? e["tag"]
+          s << "          "
           s << e.simple
           s << "\n"
         end
