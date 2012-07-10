@@ -68,11 +68,13 @@ module Insulin
       s << @date
       s << "\n"
 
+# This needs a test!
       self["all"].each do |e|
-        if ["breakfast", "lunch", "dinner", "bedtime"].include? e["tag"]
-          s << "    "
-          s << e.simple
-          s << "\n"
+        if ["breakfast", "lunch", "dinner", "bedtime"].include? e["tag"] and
+          ["medication", "glucose"].include? e["type"]
+            s << "    "
+            s << e.simple
+            s << "\n"
         end
       end
 
