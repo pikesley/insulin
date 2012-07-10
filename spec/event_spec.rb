@@ -1,7 +1,7 @@
 require 'insulin'
 
 describe Insulin::Event do
-  event = Insulin::Event.new Insulin::OnTrackCsvLine.new %q{266,"Jun 28, 2012 10:21:05 AM",Medication,Humalog,After Breakfast,4.0,"F:2 bacon, 2 toast
+  event = Insulin::Event.new Insulin::OnTrack::CsvLine.new %q{266,"Jun 28, 2012 10:21:05 AM",Medication,Humalog,After Breakfast,4.0,"F:2 bacon, 2 toast
 N:test note
 X:fail note
 N:other note"}

@@ -14,7 +14,7 @@ module Insulin
       self["all"] = []
 
       @mongo.db.collection(date).find().each do |e|
-        ev = Insulin::Event.new(e)
+        ev = Event.new(e)
         keys.each do |k|
           sub = ev[k]
           if self[sub]

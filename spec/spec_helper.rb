@@ -7,7 +7,7 @@ def load_test_db
   mconf = config.get_section "mongo"
   @mongo = Insulin::MongoHandle.new mconf
 
-  csv = Insulin::OnTrackCsvFile.new "files/on_track.csv"
+  csv = Insulin::OnTrack::CsvFile.new "files/on_track.csv"
   csv.save_events @mongo
 end
 

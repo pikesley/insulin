@@ -1,14 +1,14 @@
 require 'insulin'
 
-describe Insulin::OnTrackCsvFile do
-  csv_file = Insulin::OnTrackCsvFile.new 'files/on_track.csv'
+describe Insulin::OnTrack::CsvFile do
+  csv_file = Insulin::OnTrack::CsvFile.new 'files/on_track.csv'
 
   it "should open the file" do
     csv_file.file.path.should == 'files/on_track.csv'
   end
 
   it "should create csv lines" do
-    csv_file.lines[0].class.name.should == "Insulin::OnTrackCsvLine"
+    csv_file.lines[0].class.name.should == "Insulin::OnTrack::CsvLine"
   end
 
   it "line with serial 342 should have proper noteset" do

@@ -1,7 +1,7 @@
 require 'insulin'
 
-describe Insulin::OnTrackCsvLine do
-  csv = Insulin::OnTrackCsvLine.new %q{199,"Jun 22, 2012 8:01:39 AM",Glucose,,Breakfast,5.7,""} 
+describe Insulin::OnTrack::CsvLine do
+  csv = Insulin::OnTrack::CsvLine.new %q{199,"Jun 22, 2012 8:01:39 AM",Glucose,,Breakfast,5.7,""} 
 
   it "should have the correct serial" do
     csv["serial"].should == 199
@@ -35,7 +35,7 @@ describe Insulin::OnTrackCsvLine do
     csv["notes"].should == nil
   end
 
-  csv_with_note = Insulin::OnTrackCsvLine.new %q{266,"Jun 28, 2012 10:21:05 AM",Medication,Humalog,After Breakfast,4.0,"F:2 bacon, 2 toast
+  csv_with_note = Insulin::OnTrack::CsvLine.new %q{266,"Jun 28, 2012 10:21:05 AM",Medication,Humalog,After Breakfast,4.0,"F:2 bacon, 2 toast
 N:test note
 X:fail note
 N:other note"}

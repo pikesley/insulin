@@ -2,41 +2,44 @@ module Insulin
 # Author::  Sam (mailto:sam@cruft.co)
 # License:: MIT
 
-  # This class represents a set of notes
-  class OnTrackNoteSet < Hash
+  module OnTrack
 
-    # Parse the string 's'
-    def initialize s
+    # This class represents a set of notes
+    class NoteSet < Hash
 
-      # Notes separated by newlines
-      l = s.split"\n"
+      # Parse the string 's'
+      def initialize s
 
-      # For each line
-      l.each do |n|
+        # Notes separated by newlines
+        l = s.split"\n"
 
-        # Make a note
-        x = OnTrackNote.new n
+        # For each line
+        l.each do |n|
 
-        # This field will only exists for notes of a valid type
-        if x.type
+          # Make a note
+          x = Note.new n
 
-          # If we don't yet have this key
-          if not self[x.type]
+          # This field will only exists for notes of a valid type
+          if x.type
 
-            # If the content is a list
-            if x.content.class.name == "Array"
+            # If we don't yet have this key
+            if not self[x.type]
 
-              # This becomes our value
-              self[x.type] = x.content
+              # If the content is a list
+              if x.content.class.name == "Array"
+
+                # This becomes our value
+                self[x.type] = x.content
+              else
+
+                # Otherwise make it onto a list
+                self[x.type] = [x.content]
+              end
             else
 
-              # Otherwise make it onto a list
-              self[x.type] = [x.content]
+              # This key exists, so we append this value
+              self[x.type] << x.content
             end
-          else
-
-            # This key exists, so we append this value
-            self[x.type] << x.content
           end
         end
       end

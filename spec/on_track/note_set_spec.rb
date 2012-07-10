@@ -1,7 +1,7 @@
 require 'insulin'
 
-describe Insulin::OnTrackNoteSet do
-  simple_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad"
+describe Insulin::OnTrack::NoteSet do
+  simple_note_set = Insulin::OnTrack::NoteSet.new "F: turkey breast, salad"
 
   it "should have the correct notes" do
     simple_note_set.should == {
@@ -12,7 +12,7 @@ describe Insulin::OnTrackNoteSet do
     }
   end
 
-  multiple_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad
+  multiple_note_set = Insulin::OnTrack::NoteSet.new "F: turkey breast, salad
     N:After wine. No overnight hypo.
     N:some other note
     B: glass of wine"
@@ -33,7 +33,7 @@ describe Insulin::OnTrackNoteSet do
     }
   end
 
-  failing_note_set = Insulin::OnTrackNoteSet.new "F: turkey breast, salad
+  failing_note_set = Insulin::OnTrack::NoteSet.new "F: turkey breast, salad
 X:This should fail"
 
   it "should have the correct notes" do
