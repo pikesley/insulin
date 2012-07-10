@@ -36,7 +36,5 @@ describe Insulin::Day do
     d.minimal.should_not include "exercise"
   end
 
-  puts d
-
   drop_test_db
 end
