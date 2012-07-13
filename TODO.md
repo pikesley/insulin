@@ -15,3 +15,4 @@
 * Number of tests &c per time period
 * Update test data to include HbA1c and BP
 * Somehow include cholesterol
+* Test the insulin executable
