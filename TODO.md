@@ -9,3 +9,5 @@
 * https://github.com/prawnpdf/prawn
 * Fully detailed output showing latest HbA1c, BP, etc
 * Work out Google Drive API
+* Write some proper rubydocs
+* Should not include HbA1c or BP in normal output. Also, these things need units. And BP is not really a number.

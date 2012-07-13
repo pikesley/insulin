@@ -11,7 +11,9 @@ module Insulin
       "glucose" => "mmol/L",
       "medication" => "x10^-5 L",
       "weight" => "kg",
-      "exercise" => "minutes"
+      "exercise" => "minutes",
+      "blood pressure" => "sp/df",
+      "hba1c" => "%"
     }
 
 # An event before this time is considered part of the previous day. Because

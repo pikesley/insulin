@@ -30,6 +30,8 @@ describe Insulin::Day do
 
   it "should display correctly" do
     d.to_s.should include "19:07:42 BST | dinner          | medication | humalog       |  6.0 x10^-5 L"
+    d.to_s.should_not include "blood pressure"
+    d.to_s.should_not include "hba1c"
   end
 
   it "minimal display should be correct" do
