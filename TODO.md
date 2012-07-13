@@ -11,3 +11,4 @@
 * Work out Google Drive API
 * Write some proper rubydocs
 * Should not include HbA1c or BP in normal output. Also, these things need units. And BP is not really a number.
+* Remove TZ from normal output
