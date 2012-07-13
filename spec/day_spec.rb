@@ -34,6 +34,7 @@ describe Insulin::Day do
 
   it "minimal display should be correct" do
     d.minimal.should_not include "exercise"
+    d.minimal.should_not include "after"
   end
 
   drop_test_db

@@ -1,15 +1,13 @@
 require 'insulin'
 
 module Insulin
-  class Week < NDayPeriod
+  class Month < NDayPeriod
     def initialize date, mongo
       super({
         "start_date" => date,
-        "days" => 7,
+        "days" => 30,
         "mongo" => mongo
       })
-
-      @descriptor = "week"      
     end
   end
 end
