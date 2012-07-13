@@ -64,6 +64,7 @@ Next steps
 ==========
 
 * Get it generating custom CSVs for spreadsheeting
+* Get it generating PDFs for daily mail reports
 * Get it doing some analysis
 * Generate some more detailed output (latest HbA1c, BP, etc)
 * Give it a [meteor](http://meteor.com/) front-end (might require some help from [Chris](https://github.com/mrchrisadams)). Graphs, yo
