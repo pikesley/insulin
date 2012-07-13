@@ -63,13 +63,13 @@ OnTrack allows you to mail the exported CSV files to an email address. [This pag
 Next steps
 ==========
 
-* Get it generating custom CSVs for spreadsheeting
-* Get it generating PDFs for daily mail reports
-* Get it doing some analysis
+* Generate custom CSVs for spreadsheeting
+* Generate PDFs for daily mail reports
+* Do some analysis
 * Generate some more detailed output (latest HbA1c, BP, etc)
 * Give it a [meteor](http://meteor.com/) front-end (might require some help from [Chris](https://github.com/mrchrisadams)). Graphs, yo
-* Possibly connect to [this API](http://platform.fatsecret.com/api/) to extract carb values from plain-text food descriptions (this may be a little ambitious, we'll see)
 * Connect to the Google Drive API to pull the exported CSVs (OnTrack will push there) and push spreadsheetable CSVs
+* Possibly connect to [this API](http://platform.fatsecret.com/api/) to extract carb values from plain-text food descriptions (this may be a little ambitious, we'll see)
 
 ---
 
