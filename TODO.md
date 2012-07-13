@@ -7,3 +7,4 @@
 * https://github.com/svenfuchs/gem-release - put these into rake tasks?
 * empty time periods should return "nothing known" 
 * https://github.com/prawnpdf/prawn
+* Fully detailed output showing latest HbA1c, BP, etc
