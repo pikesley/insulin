@@ -8,17 +8,22 @@ module Insulin
       @days = hash["days"]
       @mongo = hash["mongo"]
 
-      @descriptor = "%d-day period"
-
       t = Time.parse @start_date
       today = Time.new
+      @count = 0
       @days.times do |i|
         d = (t + (i * 86400))
         if d <= today
           day = Day.new d.strftime("%F"), @mongo
           self << day
+          @count += 1
         end
       end
+
+      @descriptor = "%d-day period" % [
+        @count
+      ]
+
     end
 
     def average_glucose
@@ -44,10 +49,11 @@ module Insulin
       end
 
       s << "    "
-      s << "Average glucose for %s commencing %s: %0.2f" % [
+      s << "average glucose for %s commencing %s: %0.2f %s" % [
         @descriptor,
         @start_date,
-        self.average_glucose
+        self.average_glucose,
+        self[0].glucose_units
       ] 
 
       s

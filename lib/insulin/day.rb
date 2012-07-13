@@ -2,6 +2,8 @@ require 'insulin'
 
 module Insulin
   class Day < Hash
+    attr_reader :glucose_units
+
     def initialize date, mongo
       @date = date
       @mongo = mongo
@@ -55,8 +57,9 @@ module Insulin
         s << "\n"
       end
 
+      s << "\n"
       s << "    "
-      s << "Average glucose: %4.2f %s" % [
+      s << "average glucose: %4.2f %s" % [
         self.average_glucose,
         @glucose_units
       ]

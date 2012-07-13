@@ -7,8 +7,6 @@ module Insulin
   class I < Thor
     @@mongo = Insulin::MongoHandle.new ({"database" => "insulin"})
 
-#    map "-i" => :ingest
-
     desc "ingest FILE", "ingest OnTrack CSV export FILE"
     def ingest file
       csv = Insulin::OnTrack::CsvFile.new file
@@ -39,7 +37,15 @@ module Insulin
       puts w.to_s
     end
 
-    default_task :day
+    desc "month DATE", "show stats for 30-day period commencing DATE (defaults to previous 30 days)"
+    def month date = nil
+      if not date
+        require 'time'
+        date = (Time.new - (30 * 86400)).strftime "%F"
+      end
+      m = Insulin::Month.new date, @@mongo
+      puts m.to_s
+    end
   end
 end
 
