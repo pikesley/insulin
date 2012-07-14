@@ -61,8 +61,12 @@ module Insulin
     end
 
     def simple
-      s = "%s | %-15s | %-10s | %-13s | %4.1f %s" % [
-        self["time"],
+      value_format = "%6.1f"
+      if self["value"].is_a? String
+        value_format = "%6s"
+      end
+      s = "%s | %-15s | %-14s | %-13s | #{value_format} %s" % [
+        self["short_time"],
         self["tag"],
         self["type"],
         self["subtype"],

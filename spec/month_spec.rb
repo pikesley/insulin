@@ -20,9 +20,5 @@ describe Insulin::Month do
     m.average_glucose.should_not == nil
   end
 
-  it "should say '15-day period'" do
-    m.to_s.should include "15-day period"
-  end
-
   drop_test_db
 end

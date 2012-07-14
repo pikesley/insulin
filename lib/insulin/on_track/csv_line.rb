@@ -22,7 +22,11 @@ module Insulin
         self["type"] = bits[3].downcase
         self["subtype"] = bits[4].downcase if not bits[4] == ""
         self["tag"] = bits[5].downcase
-        self["value"] = bits[6].to_f
+        if self["type"] == "blood pressure"
+          self["value"] = bits[6]
+        else
+          self["value"] = bits[6].to_f
+        end
 
         # Notes get complicated. Everything from field 7 to the end will be part
         # of the notes

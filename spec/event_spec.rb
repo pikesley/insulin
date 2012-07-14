@@ -64,5 +64,11 @@ N:other note"}
     mongo_event["time"].should == "10:21:05 BST"
   end
 
+  bp_event = Insulin::Event.new Insulin::OnTrack::CsvLine.new %q{440,"Jun 30, 2012 3:46:15 PM",Blood Pressure,,After Lunch,118/75,""}
+
+  it "should have the correct value" do
+    bp_event["value"].should == "118/75"
+  end
+
   mongo.drop_db
 end

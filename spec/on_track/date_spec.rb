@@ -19,6 +19,10 @@ describe Insulin::OnTrack::Date do
     otd["day"].should == "friday"
   end
 
+  it "should have the correct short time" do
+    otd["short_time"].should == "09:00"
+  end
+
   otd_gmt = Insulin::OnTrack::Date.new "Jan 22 2012 9:00:12 PM"
 
   it "should have the correct timestamp" do

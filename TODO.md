@@ -1,4 +1,3 @@
-* Default 'day' for executable doesn't make much sense
 * Indexes
 * Map/reduce somewhere?
 * Jenkins?
@@ -10,7 +9,8 @@
 * Fully detailed output showing latest HbA1c, BP, etc
 * Work out Google Drive API
 * Write some proper rubydocs
-* Should not include HbA1c or BP in normal output. Also, these things need units. And BP is not really a number.
+* Should not include HbA1c or BP in normal output. Also, these things need units. And BP is not really a number
+* SAVING of BP events seems to be broken :/
 * Remove TZ from normal output
 * Number of tests &c per time period
 * Update test data to include HbA1c and BP

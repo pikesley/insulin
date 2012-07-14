@@ -21,6 +21,7 @@ module Insulin
         self["day"] = t.strftime("%A").downcase
         self["date"] = t.strftime "%F"
         self["time"] = t.strftime "%T #{self['timezone']}" 
+        self["short_time"] = t.strftime "%H:%M" 
       end
     end
   end
