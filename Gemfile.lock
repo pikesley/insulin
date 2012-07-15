@@ -9,11 +9,12 @@ GIT
 PATH
   remote: .
   specs:
-    insulin (0.1.4)
+    insulin (0.1.7)
       bson_ext
       ffi
       mongo
       pony
+      prawn (= 1.0.0.rc1)
       thor
 
 GEM
