@@ -15,7 +15,9 @@ module Insulin
         d = (t + (i * 86400))
         if d <= today
           day = Day.new d.strftime("%F"), @mongo
-          self << day
+          if day.has_events?
+            self << day
+          end
           @count += 1
         end
       end
@@ -24,12 +26,14 @@ module Insulin
         @count
       ]
 
+      @hba1c = @mongo.db.collection("hba1c").find.sort(:timestamp).to_a[-1]
     end
 
     def average_glucose
       total = 0
       self.each do |d|
         total += d.average_glucose
+        puts d.keys
       end
 
       return total / self.size
@@ -54,7 +58,15 @@ module Insulin
         @start_date,
         self.average_glucose,
         self[0].glucose_units
-      ] 
+      ]
+
+      s << "\n"
+      s << "    "
+      s << "latest hba1c (from %s): %0.1f%s" % [
+        @hba1c["date"],
+        @hba1c["value"],
+        @hba1c["units"]
+      ]
 
       s
     end

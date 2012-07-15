@@ -30,6 +30,14 @@ module Insulin
       end
     end
 
+    def has_events?
+      if self["all"].size > 0
+        return true
+      end
+
+      return false
+    end
+
     def average_glucose
       t = 0
       c = 0
