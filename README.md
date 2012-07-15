@@ -55,7 +55,7 @@ A weekly PDF summary can be generated and mailed out
 
     insulin pdf you@yourdmomain.com
 
-The PDF class is currently a bit hacky, I'm still learning the excellent [prawn gem](https://github.com/prawnpdf/prawn)
+The PDF class is currently a bit hacky, I'm still learning the excellent [prawn gem](https://github.com/prawnpdf/prawn). Requires a local SMTP server, too
 
 You can also run the tests, if you're into that sort of thing:
 
