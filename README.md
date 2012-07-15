@@ -55,7 +55,7 @@ A weekly PDF summary can be generated and mailed out
 
     insulin pdf you@yourdmomain.com
 
-The PDF class is currently a bit hacky, I'm still learning the excellent (prawn gem)[https://github.com/prawnpdf/prawn]
+The PDF class is currently a bit hacky, I'm still learning the excellent [prawn gem](https://github.com/prawnpdf/prawn)
 
 You can also run the tests, if you're into that sort of thing:
 
@@ -70,7 +70,6 @@ Next steps
 ==========
 
 * Generate custom CSVs for spreadsheeting
-* Generate PDFs for daily mail reports
 * Do some analysis
 * Generate some more detailed output (latest HbA1c, BP, etc)
 * Give it a [meteor](http://meteor.com/) front-end (might require some help from [Chris](https://github.com/mrchrisadams)). Graphs, yo
