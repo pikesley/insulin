@@ -56,7 +56,7 @@ module Insulin
           ]
         ]
       ],
-      :position => :center,
+#      :position => :center,
       :column_widths => [
         300,
         200
@@ -96,7 +96,7 @@ module Insulin
           end
         end
         @pdf.table @grid,
-          :position => :center,
+#          :position => :center,
           :column_widths => [
             100,
             100,
