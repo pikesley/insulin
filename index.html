@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Insulin by pikesley</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Insulin</h1>
+        <p class="header">Let's do something useful with my diabetes data</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/pikesley/insulin/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/pikesley/insulin/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/pikesley/insulin">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/pikesley">pikesley</a></p>
+
+
+      </header>
+      <section>
+        <h1>What's this?</h1>
+
+<p>Well I was recently diagnosed with Type-1 Diabetes. I've been collecting lots of data related to my condiiton using <a href="https://play.google.com/store/apps/details?id=com.gexperts.ontrack">OnTrack</a>, and wanted to do more interesting things with it. Hence this.</p>
+
+<p>For now all it does is ingest a CSV file, parse it into some nice JSON, and stuff it into MongoDB.</p>
+
+<h1>Install</h1>
+
+<pre><code>gem install insulin
+</code></pre>
+
+<p>Also requires MongoDB. Instructions for installing Mongo on Ubuntu are <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-debian-or-ubuntu-linux/">here</a>.</p>
+
+<h1>Usage</h1>
+
+<p>To suck in some data</p>
+
+<pre><code>insulin ingest &lt;/path/to/on_track_export_file.csv&gt;
+</code></pre>
+
+<p>This will take that file, parse it, and push the JSON into a number of collections in a MongoDB database called 'insulin'. You can view them with something like</p>
+
+<pre><code>$ mongo insulin
+MongoDB shell version: 2.0.6
+connecting to: insulin
+&gt; db.events.find({serial : 266})
+{ "_id" : ObjectId("4ff07b371508cc259c8a8f0c"), "serial" : 266, "timestamp" : ISODate("2012-06-28T09:21:05Z"), "tzoffset" : "+0100", "timezone" : "BST", "unixtime" : 1340875265, "day" : "thursday", "date" : "2012-06-28", "time" : "10:21:05 BST", "type" : "medication", "subtype" : "humalog", "tag" : "breakfast", "value" : 4, "notes" : { "food" : [ "2 bacon", "2 toast" ], "note" : [ "test note" ] } }
+&gt; 
+</code></pre>
+
+<p>Current output options are</p>
+
+<pre><code>insulin day DATE
+insulin month DATE
+insulin week DATE
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code>$ insulin day 2012-07-01
+2012-07-01
+    09:41:47 BST | breakfast       | glucose    |               |  6.4 mmol/L
+    09:57:09 BST | breakfast       | medication | humalog       |  4.0 x10^-5 L
+    12:40:43 BST | lunch           | weight     |               | 59.0 kg
+    13:54:04 BST | lunch           | glucose    |               |  5.0 mmol/L
+    14:03:05 BST | lunch           | medication | humalog       |  4.0 x10^-5 L
+    18:56:25 BST | dinner          | glucose    |               |  4.9 mmol/L
+    19:03:37 BST | dinner          | medication | humalog       |  6.0 x10^-5 L
+    21:06:01 BST | after dinner    | glucose    |               |  3.5 mmol/L
+    22:32:32 BST | bedtime         | glucose    |               |  7.5 mmol/L
+    22:46:12 BST | bedtime         | medication | lantus        | 14.0 x10^-5 L
+
+    average glucose: 5.46 mmol/L
+</code></pre>
+
+<p>A weekly PDF summary can be generated and mailed out</p>
+
+<pre><code>insulin pdf you@yourdmomain.com
+</code></pre>
+
+<p>The PDF class is currently a bit hacky, I'm still learning the excellent <a href="https://github.com/prawnpdf/prawn">prawn gem</a>. Requires a local SMTP server, too</p>
+
+<p>You can also run the tests, if you're into that sort of thing:</p>
+
+<pre><code>bundle exec rspec
+</code></pre>
+
+<h1>Postfix setup</h1>
+
+<p>OnTrack allows you to mail the exported CSV files to an email address. <a href="http://tech.jeffri.es/2010/09/automatic-ripping-and-saving-email-attachments-with-postfix/">This page</a> explains how to configure Postfix to extract those files. I now have this set up so that I mail from OnTrack to <a href="mailto:particular_address@mydomain.com">particular_address@mydomain.com</a>, the CSVs get dropped into a directory, and then 'insulin ingest' runs periodically on the newest file in that directory.</p>
+
+<h1>Next steps</h1>
+
+<ul>
+<li>Generate custom CSVs for spreadsheeting</li>
+<li>Do some analysis</li>
+<li>Generate some more detailed output (latest HbA1c, BP, etc)</li>
+<li>Give it a <a href="http://meteor.com/">meteor</a> front-end (might require some help from <a href="https://github.com/mrchrisadams">Chris</a>). Graphs, yo</li>
+<li>Connect to the Google Drive API to pull the exported CSVs (OnTrack will push there) and push spreadsheetable CSVs</li>
+<li>Possibly connect to <a href="http://platform.fatsecret.com/api/">this API</a> to extract carb values from plain-text food descriptions (this may be a little ambitious, we'll see)</li>
+</ul><hr><p>Project built using DDD (Diabetes-Driven Development)</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20895204-9");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
