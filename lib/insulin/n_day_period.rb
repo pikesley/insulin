@@ -33,7 +33,6 @@ module Insulin
       total = 0
       self.each do |d|
         total += d.average_glucose
-        puts d.keys
       end
 
       return total / self.size
