@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "bson_ext"
   gem.add_dependency "ffi"
   gem.add_dependency "prawn"
+  gem.add_dependency "pony"
 
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_development_dependency "cucumber"

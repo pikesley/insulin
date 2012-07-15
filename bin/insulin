@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# needs to handle passing config. ~/.insulin or somrthing
+
 require 'insulin'
 require 'thor'
 
@@ -7,13 +7,15 @@ module Insulin
   class I < Thor
     @@mongo = Insulin::MongoHandle.new ({"database" => "insulin"})
 
-    desc "ingest FILE", "ingest OnTrack CSV export FILE"
+    desc "ingest FILE",
+      "ingest OnTrack CSV export FILE"
     def ingest file
       csv = Insulin::OnTrack::CsvFile.new file
       csv.save_events @@mongo
     end
 
-    desc "day DATE", "show stats for day DATE (default is today)"
+    desc "day DATE",
+      "show stats for day DATE (default is today)"
     def day date = nil
       if not date
         require 'time'
@@ -27,7 +29,8 @@ module Insulin
       end
     end
 
-    desc "week DATE", "show stats for week commencing DATE (defaults to previous 7 days)"
+    desc "week DATE",
+      "show stats for week commencing DATE (defaults to previous 7 days)"
     def week date = nil
       if not date
         require 'time'
@@ -37,7 +40,8 @@ module Insulin
       puts w.to_s
     end
 
-    desc "month DATE", "show stats for 30-day period commencing DATE (defaults to previous 30 days)"
+    desc "month DATE",
+      "show stats for 30-day period commencing DATE (defaults to previous 30 days)"
     def month date = nil
       if not date
         require 'time'
@@ -47,11 +51,25 @@ module Insulin
       puts m.to_s
     end
 
-    desc "pdf RECIPIENT", "generate a PDF for the last week and mail to RECIPIENT"
+    desc "pdf RECIPIENT",
+      "generate a PDF for the last week and mail to RECIPIENT"
     def pdf recipient = nil
       date = (Time.new - (7 * 86400)).strftime "%F"
-      p = Insulin::Pdf.new Insulin::Week.new(date, @@mongo), "/vagrant_data/insulin.pdf"
+      outfile = "/tmp/insulin.pdf"
+      p = Insulin::Pdf.new Insulin::Week.new(date, @@mongo), outfile
       p.render
+
+      require 'pony'
+      Pony.mail(
+        :to => recipient,
+        :from => "insulin@cruft.co",
+        :subject => "insulin report",
+        :body => "Attached",
+        :attachments => {
+          "insulin.pdf" => File.read(outfile)
+        },
+        :charset => 'utf-8'
+      )
     end
   end
 end
