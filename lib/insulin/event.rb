@@ -8,12 +8,21 @@ module Insulin
   class Event < Hash
 
     @@units = {
-      "glucose" => "mmol/L",
+      "glucose" => " mmol/L",
       "medication" => "x10^-5 L",
       "weight" => "kg",
-      "exercise" => "minutes",
-      "blood pressure" => "sp/df",
+      "exercise" => " minutes",
+      "blood pressure" => " sp/df",
       "hba1c" => "%"
+    }
+
+    @@formats = {
+      "glucose" => "%0.1f",
+      "medication" => "%d",
+      "weight" => "%0.1f",
+      "exercise" => "%d",
+      "blood pressure" => "%s",
+      "hba1c" => "%0.1f",
     }
 
 # An event before this time is considered part of the previous day. Because
@@ -25,6 +34,15 @@ module Insulin
       self.update h
 
       self["units"] = @@units[self["type"]]
+      self["formatted_value_with_units"] = "#{@@formats[self['type']]}%s" % [
+        self["value"],
+        self["units"]
+      ]
+    end
+
+    def simple?
+      ["breakfast", "lunch", "dinner", "bedtime"].include? self["tag"] and
+          ["medication", "glucose"].include? self["type"]
     end
 
     # Save the event to Mongo via mongo_handle
@@ -61,17 +79,12 @@ module Insulin
     end
 
     def simple
-      value_format = "%6.1f"
-      if self["value"].is_a? String
-        value_format = "%6s"
-      end
-      s = "%s | %-15s | %-14s | %-13s | #{value_format} %s" % [
+      s = "%s | %-15s | %-14s | %-13s | %s" % [
         self["short_time"],
         self["tag"],
         self["type"],
         self["subtype"],
-        self["value"],
-        self["units"]
+        self["formatted_value_with_units"]
       ]
 
       s

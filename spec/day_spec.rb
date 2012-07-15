@@ -29,9 +29,9 @@ describe Insulin::Day do
   end
 
   it "should display correctly" do
-    d.to_s.should include "19:07 | dinner          | medication     | humalog       |    6.0 x10^-5 L"
+    d.to_s.should include "19:07 | dinner          | medication     | humalog       | 6x10^-5 L"
     d.to_s.should include "15:46 | after lunch     | blood pressure |               | 118/75 sp/df"
-    d.to_s.should include "15:46 |                 | hba1c          |               |    8.8 %"
+    d.to_s.should include "15:46 |                 | hba1c          |               | 8.8%"
   end
 
   it "minimal display should be correct" do

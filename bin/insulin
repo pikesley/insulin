@@ -31,7 +31,7 @@ module Insulin
     def week date = nil
       if not date
         require 'time'
-        date = (Time.new - (6 * 86400)).strftime "%F"
+        date = (Time.new - (7 * 86400)).strftime "%F"
       end
       w = Insulin::Week.new date, @@mongo
       puts w.to_s
@@ -45,6 +45,13 @@ module Insulin
       end
       m = Insulin::Month.new date, @@mongo
       puts m.to_s
+    end
+
+    desc "pdf RECIPIENT", "generate a PDF for the last week and mail to RECIPIENT"
+    def pdf recipient = nil
+      date = (Time.new - (7 * 86400)).strftime "%F"
+      p = Insulin::Pdf.new Insulin::Week.new(date, @@mongo), "/vagrant_data/insulin.pdf"
+      p.render
     end
   end
 end

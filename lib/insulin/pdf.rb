@@ -1,0 +1,99 @@
+require 'insulin'
+require 'prawn'
+
+module Insulin
+  class Pdf
+    def initialize period, outfile
+      @period = period
+      @outfile = outfile
+
+      @pdf = Prawn::Document.new
+      @pdf.font "Courier"
+      @pdf.font_size 12
+
+      @pdf.formatted_text [{
+        :text => "insulin",
+        :styles => [
+          :bold
+        ],
+        :color => "AA0000",
+        :size => 16
+      },
+      {
+        :text => " report for %s beginning %s" % [
+          @period.descriptor,
+          @period.start_date
+        ]
+      }]
+
+      s = " report for %s beginning %s" % [
+        @period.descriptor,
+        @period.start_date
+      ]
+
+      @pdf.font_size 8
+      @period.each do |d|
+        @grid = []
+        @grid << [{
+          :content => "%s (%s)" % [
+            d.date,
+            d.day
+          ],
+          :colspan => 5
+        }]
+
+        d["all"].each do |e|
+          if e.simple?
+            @grid << [
+              e["short_time"],
+              e["tag"],
+              e["type"],
+              e["subtype"],
+              e["formatted_value_with_units"]
+            ]
+          end
+        end
+        @pdf.table @grid,
+          :position => :center,
+          :column_widths => [
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          :row_colors =>
+          [
+            "F0F0F0",
+            "D0D0D0"
+          ],
+          :cell_style => {
+            :border_color => "333333",
+            :border_width => 1
+          },
+          :header => :true
+        @pdf.text "\n"
+        @pdf.text "\n"
+        @pdf.text "\n"
+      end
+
+      @pdf.stroke_horizontal_rule
+      @pdf.text "\n"
+      @pdf.text "\n"
+      @pdf.text "\n"
+      @pdf.formatted_text [{
+        :text => "insulin",
+        :color => "007700",
+        :link => "http://pikesley.github.com/insulin/"
+      
+      },
+      {
+        :text => " written and maintained by Sam Pikesley"
+      }]
+    end
+
+    def render
+      @pdf.render_file @outfile
+    end
+  end
+end

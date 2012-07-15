@@ -2,7 +2,7 @@ require 'insulin'
 
 module Insulin
   class Day < Hash
-    attr_reader :glucose_units
+    attr_reader :glucose_units, :date, :day
 
     def initialize date, mongo
       @date = date
@@ -27,6 +27,7 @@ module Insulin
         end
 
         self["all"] << ev
+        @day = self["all"][0]["day"]
       end
     end
 
@@ -80,8 +81,9 @@ module Insulin
       s << "\n"
 
       self["all"].each do |e|
-        if ["breakfast", "lunch", "dinner", "bedtime"].include? e["tag"] and
-          ["medication", "glucose"].include? e["type"]
+#        if ["breakfast", "lunch", "dinner", "bedtime"].include? e["tag"] and
+#          ["medication", "glucose"].include? e["type"]
+        if e.simple?
             s << "    "
             s << e.simple
             s << "\n"

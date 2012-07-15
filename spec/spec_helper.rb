@@ -14,3 +14,4 @@ end
 def drop_test_db
   @mongo.drop_db
 end
+

@@ -3,6 +3,8 @@ require 'time'
 
 module Insulin
   class NDayPeriod < Array
+    attr_reader :descriptor, :start_date
+
     def initialize hash
       @start_date = hash["start_date"]
       @days = hash["days"]
