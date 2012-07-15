@@ -9,8 +9,8 @@
 * Fully detailed output showing latest HbA1c, BP, etc
 * Work out Google Drive API
 * Write some proper rubydocs
-* Should not include HbA1c or BP in normal output. Also, these things need units. And BP is not really a number
 * Number of tests &c per time period
 * Somehow include cholesterol
 * Test the insulin executable
 * "Latest weight, change since last, overall trend" &c
+* Colours for low/good/high BG

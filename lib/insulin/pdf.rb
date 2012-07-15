@@ -30,8 +30,50 @@ module Insulin
         @period.descriptor,
         @period.start_date
       ]
-
+      @pdf.text "\n"
+      @pdf.text "\n"
+ 
       @pdf.font_size 8
+
+      @pdf.table [
+        [
+          "latest hba1c (from %s)" % [ 
+            @period.hba1c["date"],
+          ],
+          "%0.1f%s" % [
+            @period.hba1c["value"],
+            @period.hba1c["units"]
+          ]
+        ],
+        [
+          "average blood glucose for %s commencing %s" % [
+            @period.descriptor,
+            @period.start_date
+          ],
+          "%0.2f%s" % [
+            @period.average_glucose,
+            @period[0].glucose_units
+          ]
+        ]
+      ],
+      :position => :center,
+      :column_widths => [
+        300,
+        200
+      ],
+      :row_colors =>
+      [
+        "F0F0F0",
+        "D0D0D0"
+      ],
+      :cell_style => {
+        :border_color => "333333",
+        :border_width => 1
+      }
+      @pdf.text "\n"
+      @pdf.text "\n"
+      @pdf.text "\n"
+
       @period.each do |d|
         @grid = []
         @grid << [{
