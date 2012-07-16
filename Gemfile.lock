@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    insulin (0.1.9)
+    insulin (0.1.10)
       bson_ext
       ffi
       mongo

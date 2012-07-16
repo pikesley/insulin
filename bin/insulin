@@ -54,22 +54,26 @@ module Insulin
     desc "pdf RECIPIENT",
       "generate a PDF for the last week and mail to RECIPIENT"
     def pdf recipient = nil
-      date = (Time.new - (7 * 86400)).strftime "%F"
-      outfile = "/tmp/insulin.pdf"
-      p = Insulin::Pdf.new Insulin::Week.new(date, @@mongo), outfile
-      p.render
+      begin
+        date = (Time.new - (7 * 86400)).strftime "%F"
+        outfile = "/tmp/insulin.pdf"
+        p = Insulin::Pdf.new Insulin::Week.new(date, @@mongo), outfile
+        p.render
 
-      require 'pony'
-      Pony.mail(
-        :to => recipient,
-        :from => "insulin@cruft.co",
-        :subject => "insulin report",
-        :body => "Attached",
-        :attachments => {
-          "insulin.pdf" => File.read(outfile)
-        },
-        :charset => 'utf-8'
-      )
+        require 'pony'
+        Pony.mail(
+          :to => recipient,
+          :from => "insulin@cruft.co",
+          :subject => "insulin report",
+          :body => "Attached",
+          :attachments => {
+            "insulin.pdf" => File.read(outfile)
+          },
+          :charset => 'utf-8'
+        )
+      rescue ArgumentError
+        puts "RECIPIENT is required"
+      end
     end
   end
 end
