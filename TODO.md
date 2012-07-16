@@ -12,4 +12,4 @@
 * Somehow include cholesterol
 * Test the insulin executable
 * "Latest weight, change since last, overall trend" &c
-* Colours for low/good/high BG
+* Colours for low/good/high BG - gradient of colours depending on distance from ideal?

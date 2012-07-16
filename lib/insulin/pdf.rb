@@ -6,6 +6,7 @@ module Insulin
     def initialize period, outfile
       @period = period
       @outfile = outfile
+      @default_colour = "007700"
 
       @pdf = Prawn::Document.new
       @pdf.font "Courier"
@@ -35,6 +36,13 @@ module Insulin
  
       @pdf.font_size 8
 
+      colour = @default_colour
+      if @period.average_glucose < 4
+        colour = 'FF0000'
+      end
+      if @period.average_glucose > 8
+        colour = '0000FF'
+      end
       @pdf.table [
         [
           "latest hba1c (from %s)" % [ 
@@ -50,7 +58,8 @@ module Insulin
             @period.descriptor,
             @period.start_date
           ],
-          "%0.2f%s" % [
+          "<color rgb='%s'>%0.2f%s</color>" % [
+            colour,
             @period.average_glucose,
             @period[0].glucose_units
           ]
@@ -68,7 +77,8 @@ module Insulin
       ],
       :cell_style => {
         :border_color => "333333",
-        :border_width => 1
+        :border_width => 1,
+        :inline_format => true
       }
       @pdf.text "\n"
       @pdf.text "\n"
@@ -88,13 +98,26 @@ module Insulin
         @grid = []
         @pdf.font_size 8
         d["all"].each do |e|
+          colour = "000000"
           if e.simple?
+            if e["type"] == "glucose"
+              colour = @default_colour
+              if e["value"] < 4
+                colour = "0000FF"
+              end
+              if e["value"] > 8
+                colour = "FF0000"
+              end
+            end
             @grid << [
               e["short_time"],
               e["tag"],
               e["type"],
               e["subtype"],
-              e["formatted_value_with_units"]
+              "<color rgb='%s'>%s</color>" % [
+                colour,
+                e["formatted_value_with_units"]
+              ]
             ]
           end
         end
@@ -114,7 +137,8 @@ module Insulin
           ],
           :cell_style => {
             :border_color => "333333",
-            :border_width => 1
+            :border_width => 1,
+            :inline_format => true            
           }
         @pdf.text "\n"
         @pdf.text "\n"
