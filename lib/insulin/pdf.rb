@@ -75,15 +75,18 @@ module Insulin
       @pdf.text "\n"
 
       @period.each do |d|
-        @grid = []
-        @grid << [{
-          :content => "%s (%s)" % [
+        @pdf.formatted_text [{
+          :text => "%s (%s)" % [
             d.date,
             d.day
           ],
-          :colspan => 5
+          :color => "AA0000",
+          :size => 10
         }]
+        @pdf.text "\n"
 
+        @grid = []
+        @pdf.font_size 8
         d["all"].each do |e|
           if e.simple?
             @grid << [
@@ -112,8 +115,7 @@ module Insulin
           :cell_style => {
             :border_color => "333333",
             :border_width => 1
-          },
-          :header => :true
+          }
         @pdf.text "\n"
         @pdf.text "\n"
         @pdf.text "\n"
