@@ -14,7 +14,7 @@ PATH
       ffi
       mongo
       pony
-      prawn (= 1.0.0.rc1)
+      prawn
       thor
 
 GEM
